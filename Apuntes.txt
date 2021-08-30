@@ -1,0 +1,89 @@
+CREATE TABLE Persons (
+    Personid int NOT NULL AUTO_INCREMENT,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (Personid)
+);
+
+.executeUpdate(); //para insert o delete
+
+es.Jonathan.misiontic.modelo//aca se implementan las clases i.e. Contacto
+es.Jonathan.misiontic.dao //aca se implementa la interface i.e. VentanaPrincipal
+es.Jonathan.misiontic.dao.mysql //aca se implementan las consultas del CRUD i.e. ConexionDb
+es.Jonathan.misiontic.frames //aca va la interfaz
+
+ConexionDbDAO
+sql.Connection
+sql.DriverManager
+sql.SQLException
+util.List
+
+ private Contacto contac;
+    private boolean editable;
+    
+    public DetalleContacto() {
+        initComponents();
+    }
+
+    public void setContac(Contacto contac) {
+        this.contac = contac;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+        nombre.setEditable(editable);
+        apellido.setEditable(editable);
+        id.setEditable(editable);
+        genero.setEditable(editable);
+        tId.setEditable(editable);
+        direccion.setEditable(editable);
+        telefono.setEditable(editable);
+        correo.setEditable(editable);
+        
+    }
+    
+    public void loadData(){
+        if(contac != null){
+            id.setValue(contac.getId());
+            nombre.setText(contac.getNombre());
+            apellido.setText(contac.getApellido());
+            genero.setText(contac.getGenero());
+            tId.setText(contac.getTipoIdentificacion());
+            telefono.setText(contac.getTelefono());
+            direccion.setText(contac.getTelefono());
+            correo.setText(contac.getCorreo());
+        }else{
+            id.setText("");
+            nombre.setText("");
+            apellido.setText("");
+            genero.setText("");
+            tId.setText("");
+            telefono.setText("");
+            direccion.setText("");
+            correo.setText("");
+        }
+    }
+    public void saveData(){
+        if(contac==null){
+            contac = new Contacto();
+        }
+        contac.setNombre(nombre.getText());
+        contac.setApellido(apellido.getText());
+        contac.setGenero(genero.getText());
+        contac.setTipoIdentificacion(tId.getText());
+        contac.setTelefono(telefono.getText());
+        contac.setDireccion(direccion.getText());
+        contac.setCorreo(correo.getText());
+        contac.setIdentificacion((int)id.getValue());
+        
+    }
+
+    public Contacto getContac() {
+        return contac;
+    }
+
+    public boolean isEditable() {
+        return editable;
+    }
+    
